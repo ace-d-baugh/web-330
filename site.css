@@ -1,0 +1,53 @@
+/*
+   ============================================
+; Title: Assignment 1.3 - Environment Setup - site.css
+; Author: Professor Krasso & Ace Baugh
+; Date: 08/082022
+; Modified By: Ace Baugh
+; Description: WEB 330 CSS for index.html
+;============================================
+*/
+
+/* importing Oswald Font from Google */
+@import url('https://fonts.googleapis.com/css2?family=Limelight&family=Oswald:wght@300;400;500;700&family=Poiret+One&display=swap');
+
+/* Declaring site colors globally for ease of changing later */
+:root {
+	--primaryColor: #3c275a;
+	--accentColor: #d6a800;
+	--secondaryColor: #453674;
+}
+
+body {
+	font-family: Oswald, Verdana, arial, sans-serif;
+}
+
+#container {
+	margin: 50px 100px 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	background-color: var(--primaryColor);
+	color: white;
+	border: solid 1px var(--accentColor);
+	padding: 10px;
+}
+
+/* Links Section */
+a {
+	color: var(--secondaryColor);
+	text-decoration: none;
+}
+
+a:hover {
+	background-color: var(--accentColor);
+	color: var(--secondaryColor);
+}
+
+a:visited {
+	color: var(--primaryColor);
+}
+
