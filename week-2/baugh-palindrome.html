@@ -21,6 +21,14 @@
 		<link rel="stylesheet" href="../site.css" />
 		<link rel="stylesheet" href="../theme.css" />
 
+		<!-- page specific styles -->
+		<style type="text/css">
+			.assign-results-text {
+				text-align: center;
+				font-size: 28px;
+			}
+		</style>
+
 		<!-- Link to google fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" />
 
@@ -29,13 +37,15 @@
 
 		<!-- link ot theme script -->
 		<script src="../theme.js"></script>
-      <script defer src="../defaultTheme.js"></script> <!-- link to default theme script -->
-   </head>
+		<script defer src="../defaultTheme.js"></script>
+		<!-- link to default theme script -->
+	</head>
 	<body class="light-theme">
 		<i class="fas fa-toggle-off pull-right" onclick="toggleMode(this)" id="icon-mode" style="font-size: 28px">
 			<span id="icon-text">Light Mode</span>
 		</i>
-		<br> <!-- give a break between toggle and content -->
+		<br />
+		<!-- give a break between toggle and content -->
 		<main id="container">
 			<!-- Page Header -->
 			<h1 class="app-header">Welcome to The Palindrome App!</h1>
@@ -48,7 +58,7 @@
 						<form class="form">
 							<div class="form-field">
 								<label for="txtPhrase">Phrase Value:</label>
-								<input type="text" id="txtPhrase" class="input" required>
+								<input type="text" id="txtPhrase" class="input" required />
 							</div>
 							<div class="form-field">
 								<button id="btnCheckPhrase" class="btn btn-primary full-width" type="button">Check Phrase</button>
@@ -70,64 +80,63 @@
 				<div class="card">
 					<div class="card-title">Palindrome Results</div>
 					<div class="card-content">
-                  <div id="assign-results-header"></div>
-                  <div id="assign-results" class="assign-results-text"></div>
+						<div id="assign-results-header"></div>
+						<div id="assign-results" class="assign-results-text"></div>
 					</div>
 				</div>
-			</div>		
-      </main>
+			</div>
+		</main>
 
 		<!-- JAVASCRIPT SECTION-->
 		<script>
-         // returns todays date in dd/mm/yyyy format
-         function getTodaysDate() {
-            return new Date().toLocaleDateString('en-US');
-         }
+			// returns todays date in dd/mm/yyyy format
+			function getTodaysDate() {
+				return new Date().toLocaleDateString('en-US');
+			}
 
-         // returns the length of the input string
-         function getLength(phrase) {
-            return phrase.length;
-         }
+			// returns the length of the input string
+			function getLength(phrase) {
+				return phrase.length;
+			}
 
-         // returns the input string in reverse order
-         function reverse(phrase) {
-            return phrase.split('').reverse().join('');
-         }
+			// returns the input string in reverse order
+			function reverse(phrase) {
+				return phrase.split('').reverse().join('');
+			}
 
-         // returns true if the input string is a palindrome
-         function isPalindrome(phrase) {
-            return phrase === reverse(phrase);
-         }
+			// returns true if the input string is a palindrome
+			function isPalindrome(phrase) {
+				return phrase === reverse(phrase);
+			}
 
-         // return string without spaces or punctuation
-         function removePunctuation(phrase) {
-            return phrase.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\s]/g,"");
-         }      
+			// return string without spaces or punctuation
+			function removePunctuation(phrase) {
+				return phrase.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\s]/g, '');
+			}
 
-         // on click of the check phrase button, check if the input is a palindrome
-         document.getElementById('btnCheckPhrase').onclick = function () {
-            let txtPhrase = document.getElementById('txtPhrase').value;
-            let assignResults = document.getElementById('assign-results');
-            let today = getTodaysDate();
-            let len = getLength(txtPhrase);
-            let reversedPhrase = reverse(txtPhrase);
+			// on click of the check phrase button, check if the input is a palindrome
+			document.getElementById('btnCheckPhrase').onclick = function () {
+				let txtPhrase = document.getElementById('txtPhrase').value;
+				let assignResults = document.getElementById('assign-results');
+				let today = getTodaysDate();
+				let len = getLength(txtPhrase);
+				let reversedPhrase = reverse(txtPhrase);
 
-            // display the data about the check phrase
-            let header = `<p>Date: ${today}<br />
+				// display the data about the check phrase
+				let header = `<p>Date: ${today}<br />
                         Original Phrase: ${txtPhrase}<br />
                         Reversed: ${reversedPhrase}<br />
                         Length: ${len}</p>`;
 
-            document.getElementById('assign-results-header').innerHTML = header;
+				document.getElementById('assign-results-header').innerHTML = header;
 
-            // check if the input (minus spaces or punctuation as well) is a palindrome. if so say so, if not say so
-            if (isPalindrome(removePunctuation(txtPhrase.toLowerCase()))) {
-               document.getElementById('assign-results').innerHTML = `<p>${txtPhrase} <strong><u>is</u></strong> a palindrome!</p>`;
-            } else {
-               document.getElementById('assign-results').innerHTML = `<p>${txtPhrase} <strong><u>is not</u></strong> a palindrome!</p>`;
-            }
-         }
-
+				// check if the input (minus spaces or punctuation as well) is a palindrome. if so say so, if not say so
+				if (isPalindrome(removePunctuation(txtPhrase.toLowerCase()))) {
+					document.getElementById('assign-results').innerHTML = `<p>${txtPhrase} <strong><u>is</u></strong> a palindrome!</p>`;
+				} else {
+					document.getElementById('assign-results').innerHTML = `<p>${txtPhrase} <strong><u>is not</u></strong> a palindrome!</p>`;
+				}
+			};
 		</script>
 	</body>
 </html>
