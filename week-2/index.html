@@ -1,11 +1,11 @@
 <!--
 ============================================
-; Title: Assignment 1.3 - Environment Setup - index.html
+; Title: Assignment 2.2 - Palindrome App - index.html
 ; Author: Professor Krasso & Ace Baugh
-; Date: 08/08/2022
+; Date: 08/16/2022
 ; Modified By: Ace Baugh
-; Description: WEB 330 Main index page to showcase 
-;   links to assignments and projects for the course
+; Description: WEB 330 Palindrome App takes in input
+;   from the user and checks if the input is a palindrome
 ============================================
 -->
 
@@ -18,8 +18,8 @@
 		<title>WEB 330 – Enterprise JavaScript II</title>
 
 		<!-- Link to external CSS page-->
-		<link rel="stylesheet" href="site.css" />
-		<link rel="stylesheet" href="theme.css" />
+		<link rel="stylesheet" href="../site.css" />
+		<link rel="stylesheet" href="../theme.css" />
 
 		<!-- Link to google fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" />
@@ -34,50 +34,70 @@
 		<i class="fas fa-toggle-off pull-right" onclick="toggleMode(this)" id="icon-mode" style="font-size: 28px">
 			<span id="icon-text">Light Mode</span>
 		</i>
-		<br />
-		<!-- give a break between toggle and content -->
+		<br> <!-- give a break between toggle and content -->
 		<main id="container">
-			<!-- Main Header -->
-			<h1>Ace Baugh’s Landing Page</h1>
+			<!-- Page Header -->
+			<h1 class="app-header">Welcome to The Palindrome App</h1>
 
-			<!-- Course Name -->
-			<h2>WEB 330 Enterprise JavaScript II</h2>
+			<!--Input Card -->
+			<div class="card-container">
+				<div class="card">
+					<div class="card-title">My Favorites</div>
+					<div class="card-content">
+						<form class="form">
+							<div class="form-field">
+								<label for="favoriteList">Choose a listing</label>
+								<select type="text" name="favoriteList" id="favoriteList" class="drop-down-menu" required>
+									<option value="select">--Select--</option>
+									<option value="books">Top 3 Favorite Books</option>
+									<option value="authors">Top 3 Favorite Authors</option>
+								</select>
+							</div>
+							<div class="form-field">
+								<button id="btnDisplayListing" class="btn btn-primary full-width" type="button">Display Listing</button>
+							</div>
+						</form>
+					</div>
+				</div>
 
-			<hr />
+				<!-- Return to home page -->
+				<div class="home-link">
+					<p>
+						<a href="../index.html" class="return-home">Return</a>
+					</p>
+				</div>
+			</div>
 
-			<!-- Assignment Section -->
-			<h3>Weekly Assignments</h3>
-
-			<ul>
-				<li><a href="https://ace-d-baugh.github.io/web-330/week2" target="_blank">Assignment 2.2</a></li>
-				<li><a href="#" target="_blank">Assignment 3.2</a></li>
-				<li><a href="#" target="_blank">Assignment 4.2</a></li>
-				<li><a href="#" target="_blank">Assignment 5.2</a></li>
-				<li><a href="#" target="_blank">Assignment 6.2</a></li>
-				<li><a href="#" target="_blank">Assignment 7.2</a></li>
-				<li><a href="#" target="_blank">Assignment 8.2</a></li>
-			</ul>
-
-			<!-- Projects Section -->
-			<h3>Projects</h3>
-
-			<ul>
-				<li><a href="#" target="_blank">Personal Portfolio</a></li>
-				<li><a href="https://ace-d-baugh.github.io/web-231/" target="_blank">WEB 231's Landing Page</a></li>
-			</ul>
-
-			<!-- External Links that are relevant to the course -->
-			<h4>Important Links</h4>
-
-			<ul>
-				<li><a href="https://github.com/buwebdev/web-330" target="_blank">WEB 330's GitHub Repository</a></li>
-				<li><a href="https://bruinconnect.bellevue.edu/" target="_blank">BRUIN Connect</a></li>
-				<li><a href="https://validator.w3.org/" target="_blank">W3C HTML Validator</a></li>
-				<li><a href="http://jigsaw.w3.org/css-validator/" target="_blank">W3C CSS Validator</a></li>
-				<li><a href="https://www.w3schools.com/html/" target="_blank">HTML Tutorial</a></li>
-				<li><a href="https://www.w3schools.com/js/js_best_practices.asp" target="_blank">JavaScript Best Practices</a></li>
-			</ul>
-		</main>
+			<!-- Books Table Card set to display none -->
+			<div class="card-container" id="booksResults" style="display: none">
+				<div class="card">
+					<div class="card-title">Top 3 Favorite Books</div>
+					<div class="card-content">
+						<table>
+							<tr>
+								<th>ISBN</th>
+								<th>Title</th>
+								<th>Pages</th>
+							</tr>
+							<tr id="book01">
+								<td id="txtEndersGameISBN"></td>
+								<td id="txtEndersGameTitle"></td>
+								<td id="txtEndersGamePages"></td>
+							</tr>
+							<tr id="book02">
+								<td id="txtBookOfMormonISBN"></td>
+								<td id="txtBookOfMormonTitle"></td>
+								<td id="txtBookOfMormonPages"></td>
+							</tr>
+							<tr id="book03">
+								<td id="txtWinFriendsISBN"></td>
+								<td id="txtWinFriendsTitle"></td>
+								<td id="txtWinFriendsPages"></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>		</main>
 
 		<script>
 			/**
