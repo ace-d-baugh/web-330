@@ -23,6 +23,7 @@ body.light-theme {
 	--card-title-color: #4f3674;
 	--btn-background-color: #4f3674;
 	--btn-color: #fff;
+	--btn-border-color: #000;
 	--btn-hover-background-color: #d6a800;
 	--btn-hover-color: #4f3674;
 	--input-border-color: #ccc;
@@ -43,6 +44,7 @@ body.dark-theme {
 	--card-title-color: #d176e1;
 	--btn-background-color: #d176e1;
 	--btn-color: #fff;
+	--btn-border-color: #303030;
 	--btn-hover-background-color: #7d4787;
 	--btn-hover-color: #fff;
 	--input-border-color: #303030;
@@ -125,7 +127,6 @@ h4 {
 
 /* Button styles */
 .btn {
-	border: none;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
@@ -134,6 +135,8 @@ h4 {
 	cursor: pointer;
 	padding: 15px 32px;
 	color: black;
+	border-radius: 5px;
+	border: 2px solid var(--btn-border-color);
 }
 
 .btn-primary {
