@@ -4,10 +4,12 @@
 ; Author: Professor Krasso & Ace Baugh
 ; Date: 08/08/2022
 ; Modified By: Ace Baugh
-; Description: Theme CSS file for all WEB 330 exercises and projects
+; Description: Theme CSS file for all WEB 330 projects
+;					Variables set to change colors for theme
 ;============================================
 */
 
+/* Light Theme CSS */
 body.light-theme {
 	--text-color: #000;
 	--background-color: #fff;
@@ -29,6 +31,7 @@ body.light-theme {
 	--input-border-color: #ccc;
 }
 
+/* Dark Theme CSS */
 body.dark-theme {
 	--text-color: #fafafa;
 	--background-color: #303030;

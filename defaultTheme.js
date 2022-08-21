@@ -1,3 +1,17 @@
+/*
+============================================
+; Title: Assignment #.# theme.css
+; Author: Professor Krasso & Ace Baugh
+; Date: 08/20/2022
+; Modified By: Ace Baugh
+; Description: This takes the code that would 
+;					be found at the bottom of each 
+;					page in the script tags and moves 
+;					it to a file to be called instead 
+;					of clutterng up the HTML file.
+;============================================
+*/
+
 /**
  * Set the default theme to light if one has not been set in the browsers localStorage
  */

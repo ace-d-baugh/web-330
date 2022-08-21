@@ -1,3 +1,15 @@
+/*
+============================================
+; Title: Assignment #.# theme.js
+; Author: Professor Krasso & Ace Baugh
+; Date: 08/20/2022
+; Modified By: Ace Baugh
+; Description: This simple bit of code sets 
+;					the theme to the light theme.
+; 					It is stored in localStorage.
+;============================================
+*/ 
+
 /**
  * Set the default theme to light if one has not been set in the browsers localStorage
  */
