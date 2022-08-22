@@ -29,6 +29,7 @@ body.light-theme {
 	--btn-hover-background-color: #d6a800;
 	--btn-hover-color: #4f3674;
 	--input-border-color: #ccc;
+	--input-checkbox-color: #d6a800;
 }
 
 /* Dark Theme CSS */
@@ -51,6 +52,7 @@ body.dark-theme {
 	--btn-hover-background-color: #7d4787;
 	--btn-hover-color: #fff;
 	--input-border-color: #303030;
+	--input-checkbox-color: #9c27b0;
 }
 
 /* Making the font the same over the whole document */
@@ -161,4 +163,8 @@ h4 {
 	border: 1px solid var(--input-border-color);
 	border-radius: 4px;
 	box-sizing: border-box;
+}
+
+input[type='checkbox'] {
+	accent-color: var(--input-checkbox-color);
 }

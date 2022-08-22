@@ -1,0 +1,16 @@
+/*
+============================================
+; Title: Assignment 3.2 restaurant.css
+; Author: Professor Krasso & Ace Baugh
+; Date: 08/21/2022
+; Modified By: Ace Baugh
+; Description: Specific styling for restaurant app
+;============================================
+*/
+
+.menu-grid {
+	display: grid;
+	grid-template-columns: auto auto;
+	gap: 15px;
+	padding: 10px;
+}
