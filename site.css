@@ -8,10 +8,12 @@
 ;============================================
 */
 
+/* Main container style */
 #container {
 	margin: 50px 100px 0;
 }
 
+/* Theme selector icon styles */
 #icon-mode:hover {
 	cursor: pointer;
 }
@@ -20,11 +22,13 @@
 	padding-left: 10px;
 }
 
+/* Float an item to the right */
 .pull-right {
 	float: right;
 	margin-right: 100px;
 }
 
+/* Output styles */
 .assign-container {
 	padding: 10px;
 }
@@ -39,6 +43,7 @@
 	font-size: 28px;
 }
 
+/* Main header style */
 .app-header {
 	text-align: center;
 	font-weight: 400;
