@@ -4,7 +4,7 @@
 ; Author: Professor Krasso & Ace Baugh
 ; Date: 08/21/2022
 ; Modified By: Ace Baugh
-; Description: WEB 330 Restaurant App 
+; Description: WEB 330 Restaurant App: Creates a bill for a customer.
 ============================================
 */
 
@@ -17,6 +17,7 @@ export class Bill {
       this._desserts = [];
    }
 
+   /* The following will add passed items to their respective arrays */ 
    addBeverage(beverage) {
       this._beverages.push(beverage);
    }
@@ -25,14 +26,23 @@ export class Bill {
       this._appetizers.push(appetizer);
    }
 
-   addMainCourses(mainCourses) {
+   addMainCourse(mainCourses) {
       this._mainCourses.push(mainCourses);
    }
 
-   addDesserts(desserts) {
+   addDessert(desserts) {
       this._desserts.push(desserts);
    }
 
+   /* 
+      Creates a running total of any items that are in the following categories
+      -beverages
+      -appetizers
+      -main courses
+      -desserts
+      Utilizes forEach function to go through each item in the array
+      returns the total fixed to 2 decimal places
+   */
    getTotal() {
       let total = 0;
 

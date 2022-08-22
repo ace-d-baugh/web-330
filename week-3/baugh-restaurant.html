@@ -48,7 +48,8 @@
 				<div class="card">
 					<div class="card-title">Restaurant Menu</div>
 					<div class="card-content menu-grid">
-						<div class="card">
+
+						<div class="card"> <!-- Beverages Card -->
 							<div class="card-title">Beverages</div>
 							<div class="card-content" id="beverages">
 								<label for="soda"><input type="checkbox" id="soda" name="Soda" value="3.30" />Soda ($3.30)</label><br />
@@ -58,7 +59,7 @@
 							</div>
 						</div>
 
-						<div class="card">
+						<div class="card"> <!-- Appetizers Card -->
 							<div class="card-title">Appetizers</div>
 							<div class="card-content" id="appetizers">
 								<label for="nachos"><input type="checkbox" id="nachos" name="Nachos" value="6.60" />Nachos ($6.60)</label><br />
@@ -72,7 +73,7 @@
 							</div>
 						</div>
 
-						<div class="card">
+						<div class="card"> <!-- Main Courses Card -->
 							<div class="card-title">Main Courses</div>
 							<div class="card-content" id="main-courses">
 								<label for="tacos"><input type="checkbox" id="tacos" name="Street Tacos" value="9.70" />Street Tacos ($9.70)</label><br />
@@ -88,13 +89,13 @@
 							</div>
 						</div>
 
-						<div class="card">
+						<div class="card"> <!-- Desserts Card with place order button -->
 							<div class="card-title">Desserts</div>
 							<div class="card-content" id="desserts">
 								<label for="iceCream"><input type="checkbox" id="iceCream" name="Ice Cream" value="4.30" />Ice Cream ($4.30)</label><br />
 								<label for="cake"><input type="checkbox" id="cake" name="Chocolate Cake" value="5.40" />Chocolate Cake ($5.40)</label><br />
 								<label for="pie"><input type="checkbox" id="pie" name="Apple Pie" value="3.80" />Apple Pie ($3.80)</label><br />
-								<button id="btnOrder" class="btn btn-primary">Place Order</button>
+								<button id="btnOrder" class="btn btn-primary full-width">Place Order</button>
 							</div>
 						</div>
 					</div>
@@ -108,8 +109,8 @@
 				</div>
 			</div>
 
-			<!-- Palindrome Results Display -->
-			<div class="card-container" id="palindromeResults">
+			<!-- Order Total Results Display -->
+			<div class="card-container" id="orderResults">
 				<div class="card">
 					<div class="card-title">Order Summary</div>
 					<div class="card-content assign-results-text" id="order-total"></div>
@@ -119,7 +120,60 @@
 
 		<!-- JAVASCRIPT SECTION-->
 		<script type="module">
+			/*
+			 * This script is used to calculate the total cost of the order.
+			 */
+
+			/* importing the functions from the other JavaScript Files through index.js */
 			import { Bill, Beverage, Appetizer, MainCourse, Dessert } from './index.js';
+
+			/* Upon clicking the Place Order button this function is called */
+			document.getElementById('btnOrder').onclick = function () {
+
+				/* Storing each menu section into a variable and storing inputs into a variable */
+				const beveragesEl = document.getElementById('beverages');
+				const beverages = beveragesEl.getElementsByTagName('input');
+
+				const appetizersEl = document.getElementById('appetizers');
+				const appetizers = appetizersEl.getElementsByTagName('input');
+
+				const mainCoursesEl = document.getElementById('main-courses');
+				const mainCourses = mainCoursesEl.getElementsByTagName('input');
+
+				const dessertsEl = document.getElementById('desserts');
+				const desserts = dessertsEl.getElementsByTagName('input');
+
+				/* Creating a new bill to store the checked items in a variable */
+				const bill = new Bill();
+
+				/* The following for...of loops will only add items that are checked into the bill */
+				for (let beverage of beverages) {
+					if (beverage.checked) {
+						bill.addBeverage(new Beverage(beverage.name, beverage.value));
+					}
+				}
+
+				for (let appetizer of appetizers) {
+					if (appetizer.checked) {
+						bill.addAppetizer(new Appetizer(appetizer.name, appetizer.value));
+					}
+				}
+
+				for (let mainCourse of mainCourses) {
+					if (mainCourse.checked) {
+						bill.addMainCourse(new MainCourse(mainCourse.name, mainCourse.value));
+					}
+				}
+
+				for (let dessert of desserts) {
+					if (dessert.checked) {
+						bill.addDessert(new Dessert(dessert.name, dessert.value));
+					}
+				}
+
+				/* Displaying the total cost of the order */
+				document.getElementById('order-total').innerHTML = 'Your order total is ' + bill.getTotal();
+			};
 		</script>
 	</body>
 </html>

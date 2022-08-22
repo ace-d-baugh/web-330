@@ -4,7 +4,8 @@
 ; Author: Professor Krasso & Ace Baugh
 ; Date: 08/21/2022
 ; Modified By: Ace Baugh
-; Description: WEB 330 Restaurant App 
+; Description: WEB 330 Restaurant App: Creates beverage 
+;					class constructor from product 
 ============================================
 */
 

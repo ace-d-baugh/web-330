@@ -8,6 +8,9 @@
 ;============================================
 */
 
+/*
+   Page specific style for making the menu a grid
+*/
 .menu-grid {
 	display: grid;
 	grid-template-columns: auto auto;
