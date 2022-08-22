@@ -181,5 +181,5 @@ input[type='checkbox'] {
 }
 
 .return-home:visited {
-	color: var(--primaryColor);
+	color: var(--anchor-color);
 }
