@@ -168,3 +168,18 @@ h4 {
 input[type='checkbox'] {
 	accent-color: var(--input-checkbox-color);
 }
+
+/* Return Home Links */
+.return-home {
+	color: var(--anchor-color);
+	text-decoration: none;
+}
+
+.return-home:hover {
+	background-color: var(--anchor-hover-background-color);
+	color: var(--anchor-hover-color);
+}
+
+.return-home:visited {
+	color: var(--primaryColor);
+}
