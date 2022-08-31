@@ -4,7 +4,8 @@
 ; Author: Professor Krasso & Ace Baugh
 ; Date: 08/31/2022
 ; Modified By: Ace Baugh
-; Description: WEB 330 Calorie App
+; Description: WEB 330 Calorie App - This app will take in a user's input
+;            and display any food that matched the input string. 
 ============================================
 -->
 
@@ -25,32 +26,29 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" />
 
 		<!-- Link to Font Awesome CDN -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<!-- link ot theme script -->
 		<script src="../theme.js"></script>
 		<!-- link to default theme script -->
 		<script defer src="../defaultTheme.js"></script>
 	</head>
 	<body class="light-theme">
-		<i class="fas fa-toggle-off pull-right" onclick="toggleMode(this)" id="icon-mode" style="font-size: 28px">
-			<span id="icon-text">Light Mode</span>
-		</i>
+		<i onclick="toggleMode(this)" id="icon-mode" class="fa fa-toggle-on pull-right" style="font-size: 28px"><span id="icon-text">Dark Mode</span></i>
 		<br />
 		<!-- give a break between toggle and content -->
-		<main id="container">
+		<div id="assign-container">
 			<!-- Page Header -->
 			<h1 class="app-header">Welcome to the Calorie App!</h1>
-
-			<!--Menu Card -->
-			<div class="card-container">
+         <div class="assign-content">
+   
+            <!--Input Card -->
 				<div class="card">
 					<div class="card-title">Calorie Search Form</div>
 					<div class="card-content">
 						<div class="form">
 							<div class="form-field">
-								<label for="txtFoodItem">Enter a food item</label>
-								<input type="text" id="txtFoodItem" class="input"><br>
+								<label for="txtFoodItem">Enter a food item:</label>
+								<input type="text" id="txtFoodItem" class="input" name="txtFoodItem"><br>
 								<span id="foodList"></span>
 							</div>
 							<div class="form-field">
@@ -59,7 +57,6 @@
 						</div>
 					</div>
 				</div>
-
 				<!-- Return to home page -->
 				<div class="home-link">
 					<p>
@@ -68,14 +65,14 @@
 				</div>
 			</div>
 
-			<!-- Order Total Results Display -->
-			<div class="card-container" id="orderResults">
+			<!-- Food Results Display -->
+			<div class="assign-content">
 				<div class="card">
 					<div class="card-title">Search Results</div>
 					<div class="card-content assign-results-text" id="searchResults"></div>
 				</div>
 			</div>
-		</main>
+		</div>
 
 		<!-- JAVASCRIPT SECTION-->
 		<script type="module">
@@ -84,35 +81,46 @@
          const txtFoodItemEl = document.getElementById('txtFoodItem');
 
 			document.getElementById('btnSearch').onclick = function() {
+            // get the value of the food item
 				const txtFoodItem = txtFoodItemEl.value;
 				const foods = CalorieConverter.find(txtFoodItem);
+            // Creating table to display results
 				let tableData = `<table class="table">
                                  <tr>
                                     <th>Name</th>
                                     <th>Calories</th>
                                  </tr>`;
-
+            // Loop through foods array and create table rows
 				for (let food of foods) {
 					tableData += `<tr>
                                  <td>${food.name}</td>
                                  <td>${food.calories}</td>
                               </tr>`;
+               // Display table and close table tag
 					document.getElementById('searchResults').innerHTML = tableData + `</table>`;
 				}
 			};
-
+         // listen for keyup event on input field
          txtFoodItemEl.addEventListener("keyup", function(e) {
+            // if the key pressed is the enter key
             if (e.keyCode === 13) {
+               // call the search function by acting as a click event
                document.getElementById('btnSearch').click();
             }
          });
 
+         // create an array of foods
 			const foodList = CalorieConverter.data;
+         // create string for display
 			let foodListData = '<i>(Ex: ';
+         // loop through array and create string
 			for (let item of foodList) {
+            // add item to string
 				foodListData += `${item.name}, `;
 			}
+         // remove last comma and add closing bracket
 			foodListData = foodListData.substring(0, foodListData.length - 2);
+         // add closing bracket to string and display whole string
 			document.getElementById('foodList').innerHTML = foodListData + ')</i>';
 		</script>
 	</body>

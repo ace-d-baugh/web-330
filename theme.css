@@ -66,13 +66,10 @@ body.dark-theme {
 }
 
 /* Making the font the same over the whole document */
-* {
-	font-family: 'Oswald', Verdana, Arial, sans-serif;
-}
-
 body {
 	color: var(--text-color);
 	background: var(--background-color);
+	font-family: 'Oswald', Verdana, Arial, sans-serif;
 }
 
 a {
