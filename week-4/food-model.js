@@ -9,7 +9,7 @@
 */
 
 export class FoodModel {
-   constructor(id, name, calories) {
-      Object.assign(this, { id, name, calories });
-   }
+	constructor(id, name, calories) {
+		Object.assign(this, { id, name, calories });
+	}
 }
