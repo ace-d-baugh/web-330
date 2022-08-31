@@ -7,3 +7,11 @@
 ; Description: WEB 330 Calorie App
 ============================================
 */
+
+class FoodModel {
+   constructor(id, name, calories) {
+      Object.assign(this, { id, name, calories });
+   }
+}
+
+module.exports = FoodModel;
