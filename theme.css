@@ -198,17 +198,17 @@ input[type='checkbox'] {
 .table {
 	border-collapse: collapse;
 	margin-bottom: 30px;
+	text-align: left;
 }
 
 .table th {
-	text-align: left;
 	background-color: var(--table-header-background-color);
 	color: var(--table-header-color);
 }
 
 .table td, th {
 	border: 1px solid var(--table-border-color);
-	padding: 8px;
+	padding: 12px;
 }
 
 tr:hover {

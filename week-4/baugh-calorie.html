@@ -52,7 +52,7 @@
 						<form class="form">
 							<div class="form-field">
 								<label for="txtFoodItem">Enter a food item</label>
-								<input type="text" id="txtFoodItem" class="input" required /><br />
+								<input type="text" id="txtFoodItem" class="input" required /><br>
 								<span id="foodList"></span>
 							</div>
 							<div class="form-field">
@@ -82,10 +82,10 @@
 		<!-- JAVASCRIPT SECTION-->
 		<script type="module">
 			import { CalorieConverter } from './calorie-converter.js';
-
+         //const CalorieConverter = require('./calorie-converter.js');
 			const txtFoodItemEl = document.getElementById('txtFoodItem');
 
-			document.getElementById('btnSearch').addEventListener('click', function () {
+			document.getElementById('btnSearch').onclick = function findCalories() {
 				let txtFoodItem = txtFoodItemEl.value;
 				let foods = CalorieConverter.find(txtFoodItem);
 				let tableData = `<table class="table">
@@ -101,13 +101,21 @@
                               </tr>`;
 					document.getElementById('searchResults').innerHTML = tableData + `</table>`;
 				}
-			});
+			};
 
-			txtFoodItemEl.addEventListener('keyup', (e) => {
-				if (e.key === 'Enter') {
-					document.getElementById('btnSearch').click();
-				}
-			});
+         txtFoodItemEl.addEventListener('keypress', function(e) {
+            if (e.keyCode === '13') {
+               e.preventDefault();
+               console.log('Enter was pressed');
+               //document.getElementById('btnSearch').click(findCalories);
+            }
+         });
+			// txtFoodItemEl.addEventListener('keyup', (e) => {
+			// 	if (e.key === 'Enter') {
+         //       e.preventDefault();
+			// 		document.getElementById('btnSearch').click();
+			// 	}
+			// });
 
 			let foodList = CalorieConverter.data;
 			let foodListData = '<i>(Ex: ';
