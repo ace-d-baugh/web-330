@@ -1,6 +1,6 @@
 /*
 ============================================
-; Title: Assignment 2.2 - Restaurant App - beverage.js
+; Title: Assignment 3.2 - Restaurant App - beverage.js
 ; Author: Professor Krasso & Ace Baugh
 ; Date: 08/21/2022
 ; Modified By: Ace Baugh
