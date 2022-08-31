@@ -47,16 +47,16 @@
 				<div class="card">
 					<div class="card-title">Calorie Search Form</div>
 					<div class="card-content">
-						<form class="form">
+						<div class="form">
 							<div class="form-field">
 								<label for="txtFoodItem">Enter a food item</label>
-								<input type="text" id="txtFoodItem" class="input" required /><br>
+								<input type="text" id="txtFoodItem" class="input"><br>
 								<span id="foodList"></span>
 							</div>
 							<div class="form-field">
 								<button id="btnSearch" class="btn btn-primary full-width" type="button">Search</button>
 							</div>
-						</form>
+						</div>
 					</div>
 				</div>
 
@@ -101,10 +101,8 @@
 				}
 			};
 
-         txtFoodItemEl.addEventListener('keyup', function(e) {
-            if (e.key === 'Enter') {
-               e.preventDefault();
-               console.log('Enter was pressed');
+         txtFoodItemEl.addEventListener("keyup", function(e) {
+            if (e.keyCode === 13) {
                document.getElementById('btnSearch').click();
             }
          });
