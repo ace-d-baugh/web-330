@@ -30,6 +30,11 @@ body.light-theme {
 	--btn-hover-color: #4f3674;
 	--input-border-color: #ccc;
 	--input-checkbox-color: #d6a800;
+	--table-header-background-color: #4F3674;
+	--table-header-color: #fff;
+	--table-border-color: #ddd;
+	--table-hover-background-color: #D6A800;
+	--table-hover-color: #4F3674;
 }
 
 /* Dark Theme CSS */
@@ -53,6 +58,11 @@ body.dark-theme {
 	--btn-hover-color: #fff;
 	--input-border-color: #303030;
 	--input-checkbox-color: #9c27b0;
+	--table-header-background-color: #D176E1;
+	--table-header-color: #fff;
+	--table-border-color: #303030;
+	--table-hover-background-color: #7D4787;
+	--table-hover-color: #fff;
 }
 
 /* Making the font the same over the whole document */
@@ -182,4 +192,27 @@ input[type='checkbox'] {
 
 .return-home:visited {
 	color: var(--anchor-color);
+}
+
+/* Table Styles */
+.table {
+	border-collapse: collapse;
+	margin-bottom: 30px;
+}
+
+.table th {
+	text-align: left;
+	background-color: var(--table-header-background-color);
+	color: var(--table-header-color);
+}
+
+.table td, th {
+	border: 1px solid var(--table-border-color);
+	padding: 8px;
+}
+
+tr:hover {
+	background-color: var(--table-hover-background-color);
+	color: var(--table-hover-color);
+	cursor: pointer;
 }

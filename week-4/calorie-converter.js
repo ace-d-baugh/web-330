@@ -8,9 +8,9 @@
 ============================================
 */
 
-const FoodModel = require('./food-model');
+import { FoodModel } from './food-model.js';
 
-class CalorieConverter {
+export class CalorieConverter {
 
    static data = [
       new FoodModel(1007, "Egg", 78),
@@ -25,5 +25,3 @@ class CalorieConverter {
       return this.data.filter(food => food.name.toLowerCase().includes(string.toLowerCase()));
    }
 }
-
-module.exports = CalorieConverter;

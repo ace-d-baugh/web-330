@@ -7,3 +7,115 @@
 ; Description: WEB 330 Calorie App
 ============================================
 -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>WEB 330 – Enterprise JavaScript II</title>
+
+		<!-- Link to external CSS styles-->
+		<link rel="stylesheet" href="../site.css" />
+		<link rel="stylesheet" href="../theme.css" />
+		<link rel="stylesheet" href="./baugh-calorie.css" />
+
+		<!-- Link to google fonts-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" />
+
+		<!-- Link to Font Awesome CDN -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+
+		<!-- link ot theme script -->
+		<script src="../theme.js"></script>
+		<!-- link to default theme script -->
+		<script defer src="../defaultTheme.js"></script>
+		<!-- link to calorie calculating script -->
+		<script defer src="./calorie-converter.js"></script>
+	</head>
+	<body class="light-theme">
+		<i class="fas fa-toggle-off pull-right" onclick="toggleMode(this)" id="icon-mode" style="font-size: 28px">
+			<span id="icon-text">Light Mode</span>
+		</i>
+		<br />
+		<!-- give a break between toggle and content -->
+		<main id="container">
+			<!-- Page Header -->
+			<h1 class="app-header">Welcome to the Calorie App!</h1>
+
+			<!--Menu Card -->
+			<div class="card-container">
+				<div class="card">
+					<div class="card-title">Calorie Search Form</div>
+					<div class="card-content">
+						<form class="form">
+							<div class="form-field">
+								<label for="txtFoodItem">Enter a food item</label>
+								<input type="text" id="txtFoodItem" class="input" required /><br />
+								<span id="foodList"></span>
+							</div>
+							<div class="form-field">
+								<button id="btnSearch" class="btn btn-primary full-width" type="button">Search</button>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<!-- Return to home page -->
+				<div class="home-link">
+					<p>
+						<a href="../index.html" class="return-home">Return</a>
+					</p>
+				</div>
+			</div>
+
+			<!-- Order Total Results Display -->
+			<div class="card-container" id="orderResults">
+				<div class="card">
+					<div class="card-title">Search Results</div>
+					<div class="card-content assign-results-text" id="searchResults"></div>
+				</div>
+			</div>
+		</main>
+
+		<!-- JAVASCRIPT SECTION-->
+		<script type="module">
+			import { CalorieConverter } from './calorie-converter.js';
+
+			const txtFoodItemEl = document.getElementById('txtFoodItem');
+
+			document.getElementById('btnSearch').addEventListener('click', function () {
+				let txtFoodItem = txtFoodItemEl.value;
+				let foods = CalorieConverter.find(txtFoodItem);
+				let tableData = `<table class="table">
+                                 <tr>
+                                    <th>Name</th>
+                                    <th>Calories</th>
+                                 </tr>`;
+
+				for (let food of foods) {
+					tableData += `<tr>
+                                 <td>${food.name}</td>
+                                 <td>${food.calories}</td>
+                              </tr>`;
+					document.getElementById('searchResults').innerHTML = tableData + `</table>`;
+				}
+			});
+
+			txtFoodItemEl.addEventListener('keyup', (e) => {
+				if (e.key === 'Enter') {
+					document.getElementById('btnSearch').click();
+				}
+			});
+
+			let foodList = CalorieConverter.data;
+			let foodListData = '<i>(Ex: ';
+			for (let item of foodList) {
+				foodListData += `${item.name}, `;
+			}
+			foodListData = foodListData.substring(0, foodListData.length - 2);
+			document.getElementById('foodList').innerHTML = foodListData + ')</i>';
+		</script>
+	</body>
+</html>
