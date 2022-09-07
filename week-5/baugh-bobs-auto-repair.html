@@ -118,13 +118,16 @@
             }
          });
 
+         // Add event listener to the cart icon
          document.getElementById('cartIcon').addEventListener('click', function() {
+            // create a shopping cart table
             let cartDisplayTable = `<table>
                                        <tr>
                                           <th>ID</th>
                                           <th>Name</th>
                                           <th>Price</th>
                                        </tr>`;
+            // loop through the shopping cart and add each product to the table
             for (let product of shoppingCart.generator()) {
                cartDisplayTable += `<tr>
                                        <td>${product.id}</td>
@@ -132,10 +135,13 @@
                                        <td>${product.price}</td>
                                     </tr>`;
             }
+            // close the table
             cartDisplayTable += `</table>`;
+            // display the shopping cart
             document.getElementById('shoppingCart').innerHTML = cartDisplayTable;
          });
 
+         // function to set the shopping cart number
          function setCartCount() {
             document.getElementById('cart-count').innerHTML = shoppingCart.count();
          }

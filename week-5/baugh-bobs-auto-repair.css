@@ -17,10 +17,12 @@
    letter-spacing: 2px;
 }
 
+/* Style for the cart icon */
 i:hover {
    cursor: pointer;
 }
 
+/* Style for the cart icon */
 cart-component {
    display: block;
    margin: 0 auto;
