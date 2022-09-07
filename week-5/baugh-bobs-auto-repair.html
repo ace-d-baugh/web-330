@@ -1,0 +1,89 @@
+<!--
+============================================
+; Title: Assignment 5.2 - Bob's Automotive Repair Shop App - baugh-calorie.html
+; Author: Professor Krasso & Ace Baugh
+; Date: 09/07/2022
+; Modified By: Ace Baugh
+; Description: WEB 330 Calorie App - This app will take in a user's input
+;            and display any food that matched the input string. 
+============================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>WEB 330 – Enterprise JavaScript II</title>
+
+		<!-- Link to external CSS styles-->
+		<link rel="stylesheet" href="../site.css" />
+		<link rel="stylesheet" href="../theme.css" />
+		<link rel="stylesheet" href="./baugh-bobs-auto-repair.css" />
+
+		<!-- Link to google fonts-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" />
+
+		<!-- Link to Font Awesome CDN -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!-- link ot theme script -->
+		<script src="../theme.js"></script>
+		<!-- link to default theme script -->
+		<script defer src="../defaultTheme.js"></script>
+	</head>
+	<body class="light-theme">
+		<i onclick="toggleMode(this)" id="icon-mode" class="fa fa-toggle-on pull-right" style="font-size: 28px"><span id="icon-text">Dark Mode</span></i>
+		<br>
+		<!-- give a break between toggle and content -->
+		<div id="assign-container">
+			<!-- Page Header -->
+			<h1 class="app-header">Welcome to Bob’s Automotive Repair Shop!</h1>
+         <div class="assign-content">
+   
+			<!--Input Card -->
+			<div class="card-container">
+				<div class="card">
+					<div class="card-title">Product Listing</div>
+					<div class="card-content">
+						<form class="form">
+							<div class="form-field">
+								<label for="productList">Choose a product:</label>
+                        <select name="productList" id="productList" class="drop-down-menu">
+                           <option value="Select">--Select--</option>
+                           <option value="19.99">Oil Change</option>
+                           <option value="18.44">Filter Replacement</option>
+                           <option value="9.99">Wiper Fluid Refill</option>
+                        </select>
+							</div>
+							<i id="cart-message">was added to your shopping cart!</i>
+							<div class="form-field">
+								<button id="btnAddProduct" class="btn btn-primary full-width" type="button">Add to Cart</button>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<!-- Return to home page -->
+				<div class="home-link">
+					<p>
+						<a href="../index.html" class="return-home">Return</a>
+					</p>
+				</div>
+			</div>
+
+			<!-- Palindrome Results Display -->
+			<div class="card-container" id="palindromeResults">
+				<div class="card">
+					<div class="card-title">Shopping Cart</div>
+					<div class="card-content">
+						<table ></table>
+					</div>
+				</div>
+			</div>
+
+		<!-- JAVASCRIPT SECTION-->
+		<script type="module">
+		</script>
+	</body>
+</html>

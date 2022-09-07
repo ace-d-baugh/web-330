@@ -1,17 +1,22 @@
 /*
 ============================================
-; Title: Assignment 4.2 - Calorie App - baugh-calorie.css
+; Title: Assignment 5.2 - Bob's Automotive Repair Shop App - baugh-bobs-auto-repair.css
 ; Author: Professor Krasso & Ace Baugh
-; Date: 08/31/2022
+; Date: 09/07/2022
 ; Modified By: Ace Baugh
-; Description: WEB 330 Calorie App
+; Description: WEB 330 Bob's Automotive Repair Shop App
+;              This is extra CSS needed for the app.
 ============================================
 */
 
 /* Style for helper text */
-#foodList {
+#cart-message {
    float: right;
    font-size: 12px;
    color: #df546a;
    letter-spacing: 2px;
+}
+
+i:hover {
+   cursor: pointer;
 }
