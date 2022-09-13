@@ -7,3 +7,15 @@
 ; Description: WEB 330 Future Value App
 ============================================
 */
+
+.danger {
+   float: right;
+   color: #df546a;
+   font-size: 12px;
+   letter-spacing: 2px;
+}
+
+.form-label {
+   display: inline-block;
+   padding-top: 1rem;
+}

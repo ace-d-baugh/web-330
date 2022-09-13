@@ -7,3 +7,96 @@
 ; Description: WEB 330 Future Value App
 ============================================
 -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>WEB 330 – Enterprise JavaScript II</title>
+
+		<!-- Link to external CSS styles-->
+		<link rel="stylesheet" href="../site.css" />
+		<link rel="stylesheet" href="../theme.css" />
+		<link rel="stylesheet" href="./baugh-future-value.css" />
+      <link rel="stylesheet" href="./flex-layout.css">
+
+		<!-- Link to google fonts-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" />
+
+		<!-- Link to Font Awesome CDN -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!-- link ot theme script -->
+		<script src="../theme.js"></script>
+		<!-- link to default theme script -->
+		<script defer src="../defaultTheme.js"></script>
+	</head>
+	<body class="light-theme">
+		<i onclick="toggleMode(this)" id="icon-mode" class="fa fa-toggle-on pull-right" style="font-size: 28px"><span id="icon-text">Dark Mode</span></i>
+		<br>
+		<!-- give a break between toggle and content -->
+		<div id="assign-container">
+			<!-- Page Header -->
+			<h1 class="app-header">Welcome to the Future Value App!</h1>
+         <div class="assign-content"> 
+            <!--Input Card -->
+            <div class="card-container">
+               <div class="card">
+                  <div class="card-title">
+                     Future Value Calculator
+                     <div class="row col-12 danger" id="errorLog"></div>
+                  </div>
+                  <div class="card-content">
+                     <form class="form">
+                        <div class="form-field row">
+                           <label class="form-label col-5" for="txtMonthlyPayment">Monthly Payment:</label>
+                           <input class="col-7" type="number" id="txtMonthlyPayment" name="txtMonthlyPayment" placeholder="Enter Monthly Payment" />
+                        </div>
+                        <div class="form-field row">
+                           <label class="form-label col-5" for="txtYearlyRate">Interest Rate:</label>
+                           <input class="col-7" type="number" id="txtYearlyRate" name="txtYearlyRate" placeholder="Enter Interest Rate" />
+                        </div>
+                        <i class="danger" id="help-message">Enter 11% as 11.1:</i>
+                        <div class="form-field row">
+                           <label class="form-label col-5" for="listNumOfYears">Number of Years:</label>
+                           <select class="drop-down-menu col-7" id="listNumOfYears" name="listNumOfYears">
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                           </select>
+                           <div id="btnCalculate" class="btn btn-primary form-field" type="button">Calculate</div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+
+               <!-- Return to home page -->
+               <div class="home-link">
+                  <p>
+                     <a href="../index.html" class="return-home">Return</a>
+                  </p>
+               </div>
+            </div>
+
+            <!-- Shopping Cart Results Display -->
+            <div class="card-container" id="shoppingCartResults">
+               <div class="card">
+                  <div class="card-title">Shopping Cart</div>
+                  <div class="card-content" id="shoppingCart"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+		<!-- JAVASCRIPT SECTION-->
+		<script type="module">
+		</script>
+	</body>
+</html>
