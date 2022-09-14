@@ -7,3 +7,20 @@
 ; Description: WEB 330 Future Value App
 ============================================
 */
+
+class FloatField {
+   constructor(name, field) {
+      this.name = name;
+      this.field = field;
+   }
+
+   validate() {
+      return !isNaN(this.field.value);
+   }
+
+   getMessage() {
+      return `${this.name} must be a float value. You entered ${this.field.value}.`;
+   }
+}
+
+module.exports = FloatField;
