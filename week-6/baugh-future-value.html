@@ -51,11 +51,11 @@
                      <form class="form">
                         <div class="form-field row">
                            <label class="form-label col-5" for="txtMonthlyPayment">Monthly Payment:</label>
-                           <input class="col-7" type="number" id="txtMonthlyPayment" name="txtMonthlyPayment" placeholder="Enter Monthly Payment" />
+                           <input class="col-7" id="txtMonthlyPayment" name="txtMonthlyPayment" placeholder="Enter Monthly Payment" />
                         </div>
                         <div class="form-field row">
                            <label class="form-label col-5" for="txtYearlyRate">Interest Rate:</label>
-                           <input class="col-7" type="number" id="txtYearlyRate" name="txtYearlyRate" placeholder="Enter Interest Rate" />
+                           <input class="col-7" id="txtYearlyRate" name="txtYearlyRate" placeholder="Enter Interest Rate" />
                         </div>
                         <i class="danger" id="help-message">Enter 11% as 11.1:</i>
                         <div class="form-field row">
@@ -72,7 +72,7 @@
                               <option value="9">9</option>
                               <option value="10">10</option>
                            </select>
-                           <div id="btnCalculate" class="btn btn-primary form-field" type="button">Calculate</div>
+                           <button id="btnCalculate" class="btn btn-primary form-field" type="button">Calculate</button>
                         </div>
                      </form>
                   </div>
@@ -87,16 +87,64 @@
             </div>
 
             <!-- Shopping Cart Results Display -->
-            <div class="card-container" id="shoppingCartResults">
+            <div class="card-container" id="calculationResults">
                <div class="card">
-                  <div class="card-title">Shopping Cart</div>
-                  <div class="card-content" id="shoppingCart"></div>
+                  <div class="card-title">Calculation as of <span id="today"></span></div>
+                  <div class="card-content" id="futureValue"></div>
                </div>
             </div>
          </div>
       </div>
 		<!-- JAVASCRIPT SECTION-->
 		<script type="module">
+         import { FinanceCalculator } from './finance-calculator.js';
+         import { Validator } from './validator.js';
+
+         document.getElementById('today').innerHTML = new Date().toLocaleDateString("en-US");
+
+         const monthlyPayment = document.getElementById('txtMonthlyPayment').value;
+         const rate = document.getElementById('txtYearlyRate').value;
+         const years = document.getElementById('listNumOfYears').value;
+         const errorLogEl = document.getElementById('errorLog');
+
+         const monthlyPaymentValidator = new Validator("Monhtly Payment", monthlyPayment);
+         monthlyPaymentValidator.addRequiredField();
+         monthlyPaymentValidator.addRequiredFloatField();
+         monthlyPaymentValidator.addRequiredMinField(100);
+
+         const rateValidator = new Validator("Interest Rate", rate);
+         rateValidator.addRequiredField();
+         rateValidator.addRequiredFloatField();
+         rateValidator.addRequiredMaxField(100);
+
+         let errorLog = [];
+
+         if (!monthlyPaymentValidator.validate()) {
+            for (msg of monthlyPaymentValidator.messages) {
+               errorLog.push(msg);
+            }
+         }
+
+         if (!rateValidator.validate()) {
+            for (msg of rateValidator.messages) {
+               errorLog.push(msg);
+            }
+         }
+
+         if (monthlyPaymentValidator.validate() && rateValidator.validate()) {
+            errorLogEl.innerHTML = "";
+            let futureValue = FinanceCalculator.calculateFutureValue(monthlyPayment, rate, years);
+            document.getElementById('futureValue').innerHTML = `The future value is ${futureValue}`;
+         } else {
+            errorLogEl.innerHTML = "";
+            let errorLogMessage = `<ul>`;
+            for (msg of errorLog) {
+               errorLogMessage += `<li>${msg}</li>`;
+            }
+            errorLogMessage += `</ul>`;
+         }
+
+         errorLogEl.innerHTML = errorLogMessage;
 		</script>
 	</body>
 </html>
