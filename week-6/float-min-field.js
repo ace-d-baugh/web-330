@@ -7,3 +7,21 @@
 ; Description: WEB 330 Future Value App
 ============================================
 */
+
+class FloatMinField {
+	constructor(name, field, min) {
+		this.name = name;
+		this.field = field;
+		this.min = min;
+	}
+
+	validate() {
+		return parseFloat(this.field.value) > this.main;
+	}
+
+	getMessage() {
+		return `${this.name} must be a more than ${this.min}. You entered ${this.field.value}.`;
+	}
+}
+
+module.exports = FloatMinField;
