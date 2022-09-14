@@ -4,10 +4,11 @@
 ; Author: Professor Krasso & Ace Baugh
 ; Date: 09/13/2022
 ; Modified By: Ace Baugh
-; Description: WEB 330 Future Value App
+; Description: WEB 330 Future Value App - Specific styles for the Future Value App
 ============================================
 */
 
+/* error and helper message styles */
 .danger {
    float: right;
    color: #df546a;
@@ -15,7 +16,15 @@
    letter-spacing: 2px;
 }
 
+/* form styles */
 .form-label {
    display: inline-block;
    padding-top: 1rem;
+}
+
+/* Display results style */
+#futureValue {
+   text-align: center;
+   font-size: 28px;
+   font-weight: 400;
 }

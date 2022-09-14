@@ -4,7 +4,8 @@
 ; Author: Professor Krasso & Ace Baugh
 ; Date: 09/13/2022
 ; Modified By: Ace Baugh
-; Description: WEB 330 Future Value App
+; Description: WEB 330 Future Value App - Checks if input is a
+; float and sends error message if not
 ============================================
 */
 
@@ -15,10 +16,10 @@ export class FloatField {
    }
 
    validate() {
-      return !isNaN(this.field.value);
+      return !isNaN(this.field);
    }
 
    getMessage() {
-      return `${this.name} must be a float value. You entered ${this.field.value}.`;
+      return `${this.name} must be a float value. You entered ${this.field}.`;
    }
 }

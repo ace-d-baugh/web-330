@@ -4,7 +4,8 @@
 ; Author: Professor Krasso & Ace Baugh
 ; Date: 09/13/2022
 ; Modified By: Ace Baugh
-; Description: WEB 330 Future Value App
+; Description: WEB 330 Future Value App - Checks if input is empty
+; and sends error message if it is
 ============================================
 */
 
@@ -15,7 +16,7 @@ export class RequiredField {
 	}
 
 	validate() {
-      return this.field.value !== "";
+      return Boolean(this.field);
 	}
    getMessage() {
       return  `${this.name} is a required field.`;

@@ -11,7 +11,6 @@
 /* Main container style */
 #container {
 	margin: 50px 100px 0;
-	padding: 10px;
 }
 
 /* Theme selector icon styles */
@@ -65,7 +64,7 @@
 }
 
 .form-field {
-   padding: 20px;
+   padding: 0 20px;
 }
 
 .full-width {

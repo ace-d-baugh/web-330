@@ -4,7 +4,9 @@
 ; Author: Professor Krasso & Ace Baugh
 ; Date: 09/13/2022
 ; Modified By: Ace Baugh
-; Description: WEB 330 Future Value App
+; Description: WEB 330 Future Value App - Checks if input is a 
+; float and if it is greater than the minimum value
+; Sends error message if not
 ============================================
 */
 
@@ -16,10 +18,10 @@ export class FloatMinField {
 	}
 
 	validate() {
-		return parseFloat(this.field.value) > this.main;
+		return parseFloat(this.field) > this.min;
 	}
 
 	getMessage() {
-		return `${this.name} must be a more than ${this.min}. You entered ${this.field.value}.`;
+		return `${this.name} must be a more than ${this.min}. You entered ${this.field}.`;
 	}
 }

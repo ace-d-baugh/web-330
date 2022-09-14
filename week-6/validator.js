@@ -4,50 +4,55 @@
 ; Author: Professor Krasso & Ace Baugh
 ; Date: 09/13/2022
 ; Modified By: Ace Baugh
-; Description: WEB 330 Future Value App
+; Description: WEB 330 Future Value App - This is the validator class.
+; It is used to validate the input fields.
+; Sends generated error messages to the array
 ============================================
 */
 
+/* Import required validation functions */
 import { RequiredField } from "./required-field.js";
 import { FloatField } from "./float-field.js";
 import { FloatMinField } from "./float-min-field.js";
 import { FloatMaxField } from "./float-max-field.js";
 
 export class Validator {
-   validators = [];
-   messages = [];
+	validator = [];
+	messages = [];
 
 	constructor(name, field) {
 		this.name = name;
 		this.field = field;
 	}
 
-	addRequiredField(name, field) {
-		this.validators.push(new RequiredField(this.name, this.field));
+	/* Validates required field by calling the addRequiredField function */
+	addRequiredField() {
+		this.validator.push(new RequiredField(this.name, this.field));
 	}
 
-	addRequiredFloatField(name, field) {
-		this.validators.push(new FloatField(this.name, this.field));
+	/* Validates required field by calling the addRequiredFloatField function */
+	addRequiredFloatField() {
+		this.validator.push(new FloatField(this.name, this.field));
 	}
 
+	/* Validates required field by calling the floatMinField function */
 	addFloatMinField(min) {
-		this.validators.push(new FloatMinField(this.name, this.field, min));
+		this.validator.push(new FloatMinField(this.name, this.field, min));
 	}
 
+	/* Validates required field by calling the floatMaxField function */
 	addFloatMaxField(max) {
-		this.validators.push(new FloatMaxField(this.name, this.field, max));
+		this.validator.push(new FloatMaxField(this.name, this.field, max));
 	}
 
+	/* Collects all error messages from the validator array */
 	validate() {
-      for (let validator of this.validators) {
-         if (!validator.validate()) {
-            this.messages.push(validator.getMessage());
-         }
-      }
-      return true;
-	}
-
-	getMessage() {
+		for (let field of this.validator) {
+			if (!field.validate()) {
+				this.messages.push(field.getMessage());
+				return false;
+			}
+		}
+		return true;
 	}
 }
-
