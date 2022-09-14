@@ -7,3 +7,19 @@
 ; Description: WEB 330 Future Value App
 ============================================
 */
+
+class RequiredField {
+	constructor(name, field) {
+		this.name = name;
+		this.field = field;
+	}
+
+	validate() {
+      return this.field.value !== "";
+	}
+   getMessage() {
+      return  `${this.name} is a required field.`;
+   }
+}
+
+module.exports = RequiredField;
