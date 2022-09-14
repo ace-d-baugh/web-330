@@ -8,7 +8,7 @@
 ============================================
 */
 
-class RequiredField {
+export class RequiredField {
 	constructor(name, field) {
 		this.name = name;
 		this.field = field;
@@ -21,5 +21,3 @@ class RequiredField {
       return  `${this.name} is a required field.`;
    }
 }
-
-module.exports = RequiredField;

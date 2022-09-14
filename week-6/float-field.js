@@ -8,7 +8,7 @@
 ============================================
 */
 
-class FloatField {
+export class FloatField {
    constructor(name, field) {
       this.name = name;
       this.field = field;
@@ -22,5 +22,3 @@ class FloatField {
       return `${this.name} must be a float value. You entered ${this.field.value}.`;
    }
 }
-
-module.exports = FloatField;

@@ -8,7 +8,7 @@
 ============================================
 */
 
-class FloatMaxField {
+export class FloatMaxField {
    constructor(name, field, max) {
       this.name = name;
       this.field = field;
@@ -23,5 +23,3 @@ class FloatMaxField {
       return `${this.name} must be less than ${this.max}. You entered ${this.field.value}.`;
    }
 }
-
-module.exports = FloatMaxField;

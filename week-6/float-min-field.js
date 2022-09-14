@@ -8,7 +8,7 @@
 ============================================
 */
 
-class FloatMinField {
+export class FloatMinField {
 	constructor(name, field, min) {
 		this.name = name;
 		this.field = field;
@@ -23,5 +23,3 @@ class FloatMinField {
 		return `${this.name} must be a more than ${this.min}. You entered ${this.field.value}.`;
 	}
 }
-
-module.exports = FloatMinField;

@@ -8,7 +8,7 @@
 ============================================
 */
 
-class FinanceCalculator {
+export class FinanceCalculator {
    static MONTHS_IN_YEAR = 12;
 
    static calculateFutureValue(monthlyPayment, years, rate) {
@@ -29,5 +29,3 @@ class FinanceCalculator {
       return currencyFormatter.format(field);
    }
 }
-
-module.exports = FinanceCalculator;

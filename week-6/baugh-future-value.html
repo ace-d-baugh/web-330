@@ -110,12 +110,12 @@
          const monthlyPaymentValidator = new Validator("Monhtly Payment", monthlyPayment);
          monthlyPaymentValidator.addRequiredField();
          monthlyPaymentValidator.addRequiredFloatField();
-         monthlyPaymentValidator.addRequiredMinField(100);
+         monthlyPaymentValidator.addFloatMinField(100);
 
          const rateValidator = new Validator("Interest Rate", rate);
          rateValidator.addRequiredField();
          rateValidator.addRequiredFloatField();
-         rateValidator.addRequiredMaxField(100);
+         rateValidator.addFloatMaxField(100);
 
          let errorLog = [];
 
