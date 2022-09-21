@@ -2,9 +2,11 @@
 ============================================
 ; Title: Assignment 7.2 - WhatABook App - baugh-whatabook1.html
 ; Author: Professor Krasso & Ace Baugh
-; Date: 09/13/2022
+; Date: 09/21/2022
 ; Modified By: Ace Baugh
-; Description: WEB 330 WhatABook App 
+; Description: WEB 330 WhatABook App Takes an XML file and 
+;              displays it in a table and creates links for
+;              each book on the ISBN and then displays that book.
 ============================================
 -->
 
@@ -39,7 +41,7 @@
 			<!-- Page Header -->
 			<h1 class="app-header">Welcome to the WhatABook, Part 1 App!</h1>
 			<div class="assign-content">
-				<!--Input Card -->
+				<!--Book List Card -->
 				<div class="card-container">
 					<div class="card">
 						<div class="card-title">Book Listing</div>
@@ -66,26 +68,31 @@
 		<!-- JAVASCRIPT SECTION-->
 		<script>
 
+         // When the page loads...
          document.addEventListener("DOMContentLoaded", () => {
 
          let fileName = "books.xml";
 
+         // Open the books.xml file
          fetch(fileName)
             .then(res => res.text())
             .then(data => {
                let domParser = new DOMParser();
                let xmlBooks = domParser.parseFromString(data, "text/xml");
+               //call the loadBooks function
                loadBooks(xmlBooks);
-               //addIsbnClickEvents();
+               // call the addIsbnClickEvent function
+               addIsbnClickEvents();
             })
             .catch(err => console.log(err));
 
+         // loadBooks function - loads the books from the XML file into the bookList div
          function loadBooks(xml) {
             let books = xml.getElementsByTagName("book");
-            console.log(books);
-            let tableData = `<table id="bookTable" class="table"><tr><th>ISBN</th><th>Title</th><th>Description</th><th>Pages</th><th>Authors</th></tr>`;
+            let tableData = `<table id="bookTable" class="table"><tr><th>ISBN</th><th>Title</th><th>Description</th><th>Pages</th><th>Authors</th></tr><tbody>`;
             let bookList = document.getElementById("bookList");
 
+            // Loop through the books and add them to the table
             for (let book of books) {
                let isbn = book.getElementsByTagName("isbn")[0].innerHTML;
                let title = book.getElementsByTagName("title")[0].innerHTML;
@@ -93,6 +100,7 @@
                let pages = book.getElementsByTagName("pages")[0].innerHTML;
                let authors = book.getElementsByTagName("authors")[0].innerHTML;
 
+               // Add the book to the table
                tableData += `
                   <tr>
                      <td data-value="ISBN"><a href="#" class="isbn-link">${isbn}</a></td>
@@ -103,19 +111,48 @@
                   </tr>
                `;
             }
-            bookList.innerHTML = tableData;
+            // Close the table and add it to the bookList div
+            bookList.innerHTML = tableData + "</tbody></table>";
          }
 
+         // anchorClicked function - handles the click event on the ISBN link
          function anchorClicked(e) {
             e.preventDefault();
 
+            // Get the ISBN from the link
             let self = this;
+            // Get the parent holder of the isbn link (the td element)
             let cell = self.parentElement;
+            // Get the parent holder of the isb cell (the whole row)
             let row = cell.parentElement;
 
+            // Collect the data from the row
             let data = row.querySelectorAll("td");
+
+            // Start a new string to hold the book data
+            let bookData = `<ul>`;
+
+            // Loop through the data and add it to the bookData string
+            for (let field of data) {
+               if (field.dataset.value === "ISBN") {
+                  bookData += `<li><strong>${field.dataset.value}:</strong> ${field.textContent}</li>`;
+               } else {
+                  bookData += `<li><strong>${field.dataset.value}:</strong> ${field.textContent}</li>`;
+               }
+            }
+            // Close the list and add it to the selectedBook div
+            selectedBook.innerHTML = bookData + "</ul>";
          }
 
+         // addIsbnClickEvents function - adds the click event to the ISBN links
+         function addIsbnClickEvents() {
+            // Get all the ISBN links
+            let viewButtons = document.querySelectorAll("#bookTable tbody .isbn-link");
+            // Loop through the links and add the click event
+            for (let index = 0; index < viewButtons.length; index++) {
+               viewButtons[index].addEventListener("click", anchorClicked);
+            }
+         }
          });
 		</script>
 	</body>

@@ -1,0 +1,159 @@
+<!--
+============================================
+; Title: Assignment 8.2 - WhatABook App - baugh-whatabook2.html
+; Author: Professor Krasso & Ace Baugh
+; Date: 09/26/2022
+; Modified By: Ace Baugh
+; Description: WEB 330 WhatABook App Takes an XML file and 
+;              displays it in a table and creates links for
+;              each book on the ISBN and then displays that book.
+============================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>WEB 330 – Enterprise JavaScript II</title>
+
+		<!-- Link to external CSS styles-->
+		<link rel="stylesheet" href="../site.css" />
+		<link rel="stylesheet" href="../theme.css" />
+
+		<!-- Link to google fonts-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" />
+
+		<!-- Link to Font Awesome CDN -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+		<!-- link ot theme script -->
+		<script src="../theme.js"></script>
+		<!-- link to default theme script -->
+		<script defer src="../defaultTheme.js"></script>
+	</head>
+	<body class="light-theme">
+		<i onclick="toggleMode(this)" id="icon-mode" class="fa fa-toggle-on pull-right" style="font-size: 28px">
+         <span id="icon-text">Dark Mode</span></i>
+		<br />
+		<!-- give a break between toggle and content -->
+		<div id="assign-container">
+			<!-- Page Header -->
+			<h1 class="app-header">Welcome to the WhatABook, Part 1 App!</h1>
+			<div class="assign-content">
+				<!--Book List Card -->
+				<div class="card-container">
+					<div class="card">
+						<div class="card-title">Book Listing</div>
+						<div class="card-content" id="bookList"></div>
+					</div>
+
+					<!-- Return to home page -->
+					<div class="home-link">
+						<p>
+							<a href="../index.html" class="return-home">Return</a>
+						</p>
+					</div>
+				</div>
+
+				<!-- Selected Book Results Display -->
+				<div class="card-container" id="calculationResults">
+					<div class="card">
+						<div class="card-title">Selected Book</div>
+						<div class="card-content" id="selectedBook"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- JAVASCRIPT SECTION-->
+		<script>
+
+         // When the page loads...
+         document.addEventListener("DOMContentLoaded", () => {
+
+         let fileName = "books.xml";
+
+         // Open the books.xml file
+         fetch(fileName)
+            .then(res => res.text())
+            .then(data => {
+               let domParser = new DOMParser();
+               let xmlBooks = domParser.parseFromString(data, "text/xml");
+               //call the loadBooks function
+               loadBooks(xmlBooks);
+               // call the addIsbnClickEvent function
+               addIsbnClickEvents();
+            })
+            .catch(err => console.log(err));
+
+         // loadBooks function - loads the books from the XML file into the bookList div
+         function loadBooks(xml) {
+            let books = xml.getElementsByTagName("book");
+            let tableData = `<table id="bookTable" class="table"><tr><th>ISBN</th><th>Title</th><th>Description</th><th>Pages</th><th>Authors</th></tr><tbody>`;
+            let bookList = document.getElementById("bookList");
+
+            // Loop through the books and add them to the table
+            for (let book of books) {
+               let isbn = book.getElementsByTagName("isbn")[0].innerHTML;
+               let title = book.getElementsByTagName("title")[0].innerHTML;
+               let description = book.getElementsByTagName("description")[0].innerHTML;
+               let pages = book.getElementsByTagName("pages")[0].innerHTML;
+               let authors = book.getElementsByTagName("authors")[0].innerHTML;
+
+               // Add the book to the table
+               tableData += `
+                  <tr>
+                     <td data-value="ISBN"><a href="#" class="isbn-link">${isbn}</a></td>
+                     <td data-value="Title">${title}</td>
+                     <td data-value="Description">${description}</td>
+                     <td data-value="Pages">${pages}</td>
+                     <td data-value="Authors">${authors}</td>
+                  </tr>
+               `;
+            }
+            // Close the table and add it to the bookList div
+            bookList.innerHTML = tableData + "</tbody></table>";
+         }
+
+         // anchorClicked function - handles the click event on the ISBN link
+         function anchorClicked(e) {
+            e.preventDefault();
+
+            // Get the ISBN from the link
+            let self = this;
+            // Get the parent holder of the isbn link (the td element)
+            let cell = self.parentElement;
+            // Get the parent holder of the isb cell (the whole row)
+            let row = cell.parentElement;
+
+            // Collect the data from the row
+            let data = row.querySelectorAll("td");
+
+            // Start a new string to hold the book data
+            let bookData = `<ul>`;
+
+            // Loop through the data and add it to the bookData string
+            for (let field of data) {
+               if (field.dataset.value === "ISBN") {
+                  bookData += `<li><strong>${field.dataset.value}:</strong> ${field.textContent}</li>`;
+               } else {
+                  bookData += `<li><strong>${field.dataset.value}:</strong> ${field.textContent}</li>`;
+               }
+            }
+            // Close the list and add it to the selectedBook div
+            selectedBook.innerHTML = bookData + "</ul>";
+         }
+
+         // addIsbnClickEvents function - adds the click event to the ISBN links
+         function addIsbnClickEvents() {
+            // Get all the ISBN links
+            let viewButtons = document.querySelectorAll("#bookTable tbody .isbn-link");
+            // Loop through the links and add the click event
+            for (let index = 0; index < viewButtons.length; index++) {
+               viewButtons[index].addEventListener("click", anchorClicked);
+            }
+         }
+         });
+		</script>
+	</body>
+</html>
