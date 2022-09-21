@@ -131,7 +131,7 @@
                                              <th>Price</th>
                                           </tr>`;
                // loop through the shopping cart and add each product to the table
-               for (let product of shoppingCart.generator()) {
+               for (let product of shoppingCart.products) {
                   cartDisplayTable += `<tr>
                                           <td>${product.id}</td>
                                           <td>${product.name}</td>

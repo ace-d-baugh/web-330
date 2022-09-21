@@ -15,20 +15,34 @@ export class ShoppingCart {
 		this.products = [];
 	}
 
-   // This method returns the number of items in the shopping cart
+	// This method returns the number of items in the shopping cart
 	count() {
 		return this.products.length;
 	}
 
-   // This method adds a product to the shopping cart
+	// This method adds a product to the shopping cart
 	add(product) {
 		this.products.push(product);
 	}
 
-   // This mthod iterates over the shopping cart
-	*generator() {
+	// This method iterates over the shopping cart
+	/* *generator() {
 		for (let product of this.products) {
 			yield product;
 		}
-	}
+	} */
+
+	// This method iterates over the shopping cart
+	[Symbol.iterator] = function () {
+		let nextIndex = 0;
+		return {
+			next: () => {
+				if (nextIndex < this.products.length) {
+					return { value: this.products[nextIndex++], done: false };
+				} else {
+					return { done: true };
+				}
+			},
+		};
+	};
 }
