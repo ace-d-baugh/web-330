@@ -144,15 +144,6 @@
             selectedBook.innerHTML = bookData + "</ul>";
          }
 
-         // addIsbnClickEvents function - adds the click event to the ISBN links
-         function addIsbnClickEvents() {
-            // Get all the ISBN links
-            let viewButtons = document.querySelectorAll("#bookTable tbody .isbn-link");
-            // Loop through the links and add the click event
-            for (let index = 0; index < viewButtons.length; index++) {
-               viewButtons[index].addEventListener("click", anchorClicked);
-            }
-         }
          });
 		</script>
 	</body>
