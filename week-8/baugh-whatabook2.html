@@ -2,9 +2,9 @@
 ============================================
 ; Title: Assignment 8.2 - WhatABook App - baugh-whatabook2.html
 ; Author: Professor Krasso & Ace Baugh
-; Date: 09/26/2022
+; Date: 09/28/2022
 ; Modified By: Ace Baugh
-; Description: WEB 330 WhatABook App Takes an XML file and 
+; Description: WEB 330 WhatABook App Takes an JSON API file and 
 ;              displays it in a table and creates links for
 ;              each book on the ISBN and then displays that book.
 ============================================
@@ -74,6 +74,7 @@
 			// Create a new instance of the HttpClient class
 			let http = new HttpClient();
 
+			// array of books to display by ISBN
 			const isbns = [
 				'0345339681',
             '0261103571',
@@ -86,7 +87,7 @@
             '9780590405959'
 			];
 
-			// Object literal
+			// Parameters to pass to the API
 			const params = {
 				bibkeys: `ISBN:${isbns.join(',')}`,
 				format: 'json',
@@ -97,14 +98,17 @@
 			http.get('https://openlibrary.org/api/books', params)
 				.then((res) => {
 
+					// Build a table of books
 					document.getElementById('bookList').innerHTML = buildHtmlString(res, 'table');
 
+					// Add event listeners to each book link
 					addIsbnClickEvents();
 				})
 				.catch((err) => {
 					console.log(err);
 				});
 
+			// Build a list of book information from the API response and Link to the ISBN
 			function getBook(e) {
 				e.preventDefault();
 
@@ -120,6 +124,7 @@
 
 				http.get('https://openlibrary.org/api/books', params)
 					.then((res) => {
+						// Build a list of book information
 						document.getElementById('selectedBook').innerHTML = buildHtmlString(res, 'ul');
 					})
 					.catch((e) => {
@@ -127,6 +132,7 @@
 					});
 			}
 
+			// Build a string of HTML from the API response
 			function buildHtmlString(res, format) {
 				let tableString = `<table id="bookTable" class="table">
 											<tr>
@@ -140,6 +146,7 @@
 				let ulString = ``;
 
 				for (let key in res) {
+					// Start the List
 					ulString += `<ul style="list-style-type: none;">`;
 
 					if (res.hasOwnProperty(key)) {
@@ -150,7 +157,7 @@
 							}));
 						}
 					
-
+						// Build a table row for each book
 						let book = {
 							isbn: res[key].details.isbn_13 ? res[key].details.isbn_13 : res[key].details.isbn_10,
 							title: res[key].details.title,
@@ -159,12 +166,14 @@
 							authors: authors.join(', ')
 						};
 
+						// Build a list item for each book
 						ulString += `<li><strong>ISBN:</strong> ${book.isbn}</li>
 											<li><strong>Title:</strong> ${book.title}</li>
 											<li><strong>Description:</strong> ${book.description}</li>
 											<li><strong>Pages:</strong> ${book.pages}</li>
 											<li><strong>Authors:</strong> ${book.authors}</li>`;
 
+						// Build a table row for each book
 						tableString += `<tr>
 												<td><a href="#" class="isbn-link">${book.isbn}</a></td>
 												<td>${book.title}</td>
@@ -175,9 +184,11 @@
 					}
 				}
 				
+				// End the List
 				tableString += `</tbody></table>`;
 				ulString += `</ul>`;
 
+				// If table is requested, return the table string, otherwise return the list string
 				if (format === 'table') {
 					return tableString;
 				} else {
